@@ -567,6 +567,7 @@ h1 {
   text-align: left;
 }
 
+
 .whole-body__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -587,6 +588,14 @@ h1 {
   line-height: 1.28;
   letter-spacing: 0;
   text-align: center;
+}
+
+.whole-body__description {
+  margin: 2rem 0 0.62rem;
+}
+
+.whole-body__description + .whole-body__grid {
+  margin-top: 0;
 }
 
 .whole-body-demo__media {
@@ -790,6 +799,10 @@ h1 {
   line-height: 1.28;
   letter-spacing: 0;
   text-align: center;
+}
+
+.framework-video-card__title:last-child {
+  margin: 0.58rem 0 0;
 }
 
 .framework-video-card__placeholder {
@@ -1321,6 +1334,10 @@ h1 {
   }
 
   .whole-body__grid {
+    margin-top: 1.45rem;
+  }
+
+  .whole-body__description {
     margin-top: 1.45rem;
   }
 

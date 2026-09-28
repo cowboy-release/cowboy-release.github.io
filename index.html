@@ -19,7 +19,10 @@
       <a href="#abstract">Abstract</a>
       <a href="#sim-to-real">Generalization</a>
       <a href="#contextual-whole-body">Contextual Manipulation</a>
+      <a href="#whole-body-coordination">Whole-Body Coordination</a>
+      <a href="#language-conditioning">Language Conditioning</a>
       <a href="#real-world-evaluations">Real World Evaluations</a>
+      <a href="#framework-components">Method</a>
     </div>
   </nav>
 
@@ -51,7 +54,7 @@
         <h2 class="sim-real__title" id="sim-real-title">
           <span class="title-accent">COWBOY</span>
           <span class="sim-real__title-muted">enables sim-to-real mobile manipulation across</span>
-          <span class="sim-real__title-strong">diverse objects and environments.</span>
+          <span class="sim-real__title-strong">diverse objects and environments</span>
         </h2>
 
         <div class="sim-real__body">
@@ -81,7 +84,7 @@
 
     <section class="contextual" id="contextual-whole-body" aria-labelledby="contextual-title">
       <div class="contextual__inner">
-        <h2 class="contextual__title" id="contextual-title"><span class="title-accent">COWBOY</span> policies exhibit <strong>contextual</strong> manipulation.</h2>
+        <h2 class="contextual__title" id="contextual-title"><span class="title-accent">COWBOY</span> policies exhibit <strong>contextual</strong> manipulation</h2>
         <div class="contextual__body">
           <div class="contextual__copy">
             <p>Observing only the <span class="text-accent">scene geometry</span>, <span class="text-accent">object geometry</span>, and <span class="text-accent">target object</span>, the policy automatically adapts its behavior accordingly:</p>
@@ -116,7 +119,7 @@
 
     <section class="whole-body" id="whole-body-coordination" aria-labelledby="whole-body-title">
       <div class="whole-body__inner">
-        <h2 class="whole-body__title" id="whole-body-title"><span class="title-accent">COWBOY</span> policies coordinate the <strong>whole body</strong>.</h2>
+        <h2 class="whole-body__title" id="whole-body-title"><span class="title-accent">COWBOY</span> policies coordinate the <strong>whole body</strong></h2>
         <div class="whole-body__grid">
           <figure class="whole-body-demo">
             <h3 class="whole-body-demo__title">Active Vision</h3>
@@ -132,9 +135,26 @@
       </div>
     </section>
 
+    <section class="whole-body" id="language-conditioning" aria-labelledby="language-conditioning-title">
+      <div class="whole-body__inner">
+        <h2 class="whole-body__title" id="language-conditioning-title"><span class="title-accent">COWBOY</span> integrates with <strong>SAM3</strong> for <strong>language-conditioned</strong> manipulation</h2>
+        <p class="whole-body-demo__title whole-body__description">SAM3 segments the prompted object, and the estimated object position guides the same policy to accomplish the task</p>
+        <div class="whole-body__grid">
+          <figure class="whole-body-demo">
+            <video class="whole-body-demo__video" muted loop playsinline preload="none" poster="assets/videos/language_pick/posters/lan_pick1.webp" data-src="assets/videos/language_pick/lan_pick1.mp4" data-contextual-video aria-label="Language-conditioned grasping video: green pear, grape, apple"></video>
+            <figcaption class="whole-body-demo__caption">Green Pear, Grape, Apple</figcaption>
+          </figure>
+          <figure class="whole-body-demo">
+            <video class="whole-body-demo__video" muted loop playsinline preload="none" poster="assets/videos/language_pick/posters/lan_pick2.webp" data-src="assets/videos/language_pick/lan_pick2.mp4" data-contextual-video aria-label="Language-conditioned grasping video: tennis ball, pumpkin"></video>
+            <figcaption class="whole-body-demo__caption">Tennis Ball, Pumpkin</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="evals" id="real-world-evaluations" aria-labelledby="real-world-evaluations-title">
       <div class="evals-header">
-        <h2 id="real-world-evaluations-title">Real World Evaluations.</h2>
+        <h2 id="real-world-evaluations-title">Real World Evaluations</h2>
         <div class="evals-header__meta">
           <p class="evals-subtitle">We evaluate our whole-body grasping policy in <span class="text-accent text-nowrap">24 in-the-wild scenes</span> across <span class="text-accent">over 100 unique objects</span>, achieving a <span class="text-accent">91% success rate</span>.</p>
           <p class="eval-play-hint" data-play-hint>Hover to play video</p>
@@ -322,20 +342,20 @@
           <p class="framework-component__description">We introduce a vectorized whole-body controller (WBC) capable of generating environment aware whole-body motion across thousands of simulated environments on a single GPU.</p>
           <div class="framework-video-grid framework-video-grid--two">
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">End-Effector Reaching</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/eef_reaching.webp" data-src="assets/videos/wbc/eef_reaching.mp4" data-contextual-video aria-label="End-Effector Reaching demonstration video"></video>
+              <h4 class="framework-video-card__title">End-Effector Reaching</h4>
             </figure>
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">Camera Gaze Control</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/camera_gaze_control.webp" data-src="assets/videos/wbc/camera_gaze_control.mp4" data-contextual-video aria-label="Camera Gaze Control demonstration video"></video>
+              <h4 class="framework-video-card__title">Camera Gaze Control</h4>
             </figure>
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">Self Collision Avoidance</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/self_collision_avoidance.webp" data-src="assets/videos/wbc/self_collision_avoidance.mp4" data-contextual-video aria-label="Self Collision Avoidance demonstration video"></video>
+              <h4 class="framework-video-card__title">Self Collision Avoidance</h4>
             </figure>
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">Environment Collision Avoidance</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/env_collision_avoidance.webp" data-src="assets/videos/wbc/env_collision_avoidance.mp4" data-contextual-video aria-label="Environment Collision Avoidance demonstration video"></video>
+              <h4 class="framework-video-card__title">Environment Collision Avoidance</h4>
             </figure>
           </div>
         </div>
@@ -345,16 +365,16 @@
           <p class="framework-component__description">Our WBC handles collision-free approach to the target object. This allows us to train local RL policies that only focus on object interactions, simplifying the learning task.</p>
           <div class="framework-video-grid framework-video-grid--three">
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">Top Down Grasp</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/local/posters/top_down_grasp.webp" data-src="assets/videos/local/top_down_grasp.mp4" data-contextual-video aria-label="Top Down Grasp demonstration video"></video>
+              <h4 class="framework-video-card__title">Top Down Grasp</h4>
             </figure>
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">Side Grasp</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/local/posters/side_grasp.webp" data-src="assets/videos/local/side_grasp.mp4" data-contextual-video aria-label="Side Grasp demonstration video"></video>
+              <h4 class="framework-video-card__title">Side Grasp</h4>
             </figure>
             <figure class="framework-video-card">
-              <h4 class="framework-video-card__title">Constrained Side Grasp</h4>
               <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/local/posters/constrained_side_grasp.webp" data-src="assets/videos/local/constrained_side_grasp.mp4" data-contextual-video aria-label="Constrained Side Grasp demonstration video"></video>
+              <h4 class="framework-video-card__title">Constrained Side Grasp</h4>
             </figure>
           </div>
         </div>
