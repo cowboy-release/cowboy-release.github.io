@@ -153,7 +153,6 @@ window.REAL_WORLD_EVAL_SHOWCASE_ORDER = [
   "scene_23/scene_23_1.mp4",
   "scene_23/scene_23_2.mp4",
   "scene_23/scene_23_3.mp4",
-  "scene_9/scene_9_3.mp4",
   "scene_11/scene_11_1.mp4",
   "scene_11/scene_11_2.mp4",
   "scene_5/scene_5_2.mp4",

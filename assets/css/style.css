@@ -339,12 +339,17 @@ h1 {
 }
 
 .showcase-card {
+  position: relative;
   min-width: 0;
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+}
+
+.video-expand-frame {
+  position: relative;
 }
 
 .showcase-media {
@@ -900,7 +905,7 @@ h1 {
 }
 
 .eval-expand-button,
-.distillation-expand-button,
+.video-expand-button,
 .eval-lightbox__close {
   display: inline-grid;
   place-items: center;
@@ -919,7 +924,7 @@ h1 {
 }
 
 .eval-expand-button svg,
-.distillation-expand-button svg,
+.video-expand-button svg,
 .eval-lightbox__close svg {
   width: 1.05rem;
   height: 1.05rem;
@@ -931,7 +936,7 @@ h1 {
 }
 
 .eval-expand-button,
-.distillation-expand-button {
+.video-expand-button {
   position: absolute;
   top: 0.55rem;
   right: 0.55rem;
@@ -945,8 +950,8 @@ h1 {
 
 .eval-expand-button:hover,
 .eval-expand-button:focus-visible,
-.distillation-expand-button:hover,
-.distillation-expand-button:focus-visible,
+.video-expand-button:hover,
+.video-expand-button:focus-visible,
 .eval-lightbox__close:hover,
 .eval-lightbox__close:focus-visible {
   border-color: var(--accent);
@@ -956,8 +961,12 @@ h1 {
 
 .eval-card.has-video:hover .eval-expand-button,
 .eval-card.has-video:focus-within .eval-expand-button,
-.distillation-card:hover .distillation-expand-button,
-.distillation-card:focus-within .distillation-expand-button {
+.distillation-card:hover .video-expand-button,
+.distillation-card:focus-within .video-expand-button,
+.showcase-card:hover .video-expand-button,
+.showcase-card:focus-within .video-expand-button,
+.video-expand-frame:hover .video-expand-button,
+.video-expand-frame:focus-within .video-expand-button {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -1177,7 +1186,7 @@ h1 {
     display: none;
   }
 
-  .distillation-expand-button {
+  .video-expand-button {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);

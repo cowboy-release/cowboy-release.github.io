@@ -139,6 +139,21 @@ function makeIconSvg(kind) {
   return icon;
 }
 
+function createVideoExpandButton(video, videoUrl, ariaLabel, dialogLabel) {
+  const button = document.createElement("button");
+  button.className = "video-expand-button";
+  button.type = "button";
+  button.setAttribute("aria-label", ariaLabel);
+  button.append(makeIconSvg("expand"));
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    openStandaloneExpandedVideo(video, videoUrl, getPosterUrl(videoUrl), dialogLabel);
+  });
+
+  return button;
+}
+
 function getLoopedIndex(index, length) {
   return ((index % length) + length) % length;
 }
@@ -493,7 +508,8 @@ function renderShowcasePage() {
     showcasePage * SHOWCASE_PAGE_SIZE + SHOWCASE_PAGE_SIZE
   );
 
-  pageVideos.forEach((videoUrl) => {
+  pageVideos.forEach((videoUrl, index) => {
+    const videoNumber = showcasePage * SHOWCASE_PAGE_SIZE + index + 1;
     const card = document.createElement("figure");
     card.className = "showcase-card";
 
@@ -509,10 +525,18 @@ function renderShowcasePage() {
     video.dataset.src = videoUrl;
     keepVideoMuted(video);
 
+    const expandButton = createVideoExpandButton(
+      video,
+      videoUrl,
+      `Expand real-world video ${videoNumber}`,
+      "Expanded real-world video"
+    );
+
+    card.tabIndex = 0;
     card.addEventListener("pointerenter", () => loadShowcaseVideo(video, videoUrl));
     card.addEventListener("focusin", () => loadShowcaseVideo(video, videoUrl));
 
-    media.append(video);
+    media.append(video, expandButton);
     card.append(media);
     showcaseGrid.append(card);
 
@@ -572,21 +596,12 @@ function renderDistillationPage() {
     video.setAttribute("aria-label", `Distillation demonstration video ${distillationPage * DISTILLATION_PAGE_SIZE + index + 1}`);
     keepVideoMuted(video);
 
-    const expandButton = document.createElement("button");
-    expandButton.className = "distillation-expand-button";
-    expandButton.type = "button";
-    expandButton.setAttribute("aria-label", `Expand distillation demonstration video ${distillationPage * DISTILLATION_PAGE_SIZE + index + 1}`);
-    expandButton.append(makeIconSvg("expand"));
-    expandButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      openStandaloneExpandedVideo(
-        video,
-        videoUrl,
-        getPosterUrl(videoUrl),
-        "Expanded distillation video"
-      );
-    });
+    const expandButton = createVideoExpandButton(
+      video,
+      videoUrl,
+      `Expand distillation demonstration video ${distillationPage * DISTILLATION_PAGE_SIZE + index + 1}`,
+      "Expanded distillation video"
+    );
 
     card.tabIndex = 0;
     card.addEventListener("pointerenter", () => loadDistillationVideo(video));
@@ -702,7 +717,20 @@ const contextualVideoObserver = "IntersectionObserver" in window
 contextualVideos.forEach((video) => {
   keepVideoMuted(video);
   video.addEventListener("pointerenter", () => loadContextualVideo(video));
-  video.addEventListener("focusin", () => loadContextualVideo(video));
+
+  const frame = document.createElement("div");
+  frame.className = "video-expand-frame";
+  frame.tabIndex = 0;
+  frame.addEventListener("focusin", () => loadContextualVideo(video));
+  video.replaceWith(frame);
+
+  const label = video.getAttribute("aria-label") || "video";
+  frame.append(video, createVideoExpandButton(
+    video,
+    video.getAttribute("data-src") || "",
+    `Expand ${label}`,
+    `Expanded ${label}`
+  ));
 
   if (contextualVideoObserver) {
     contextualVideoObserver.observe(video);
@@ -929,7 +957,7 @@ function closeStandaloneExpandedVideo(shouldRefresh = true) {
   document.body.classList.remove("has-eval-lightbox");
 
   if (standaloneExpandedSourceVideo) {
-    const card = standaloneExpandedSourceVideo.closest(".distillation-card");
+    const card = standaloneExpandedSourceVideo.closest(".distillation-card, .showcase-card, .video-expand-frame");
     if (card && document.contains(card)) {
       card.focus({ preventScroll: true });
     }
