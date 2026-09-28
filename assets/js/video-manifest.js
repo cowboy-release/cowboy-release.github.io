@@ -40,8 +40,7 @@ window.REAL_WORLD_EVAL_VIDEOS = {
   ],
   "9": [
     "scene_9_1.mp4",
-    "scene_9_2.mp4",
-    "scene_9_3.mp4"
+    "scene_9_2.mp4"
   ],
   "10": [
     "scene_10_1.mp4"
@@ -106,23 +105,24 @@ window.REAL_WORLD_EVAL_VIDEOS = {
 
 // Stable showcase order. Append new videos to the end so existing carousel groups do not reshuffle.
 window.REAL_WORLD_EVAL_SHOWCASE_ORDER = [
-  "scene_1/scene_1_1.mp4",
-  "scene_2/scene_2_1.mp4",
+  "scene_24/scene_24_1.mp4",
+  "scene_21/scene_21_2.mp4",
+  "scene_13/scene_13_1.mp4",
+  "scene_6/scene_6_1.mp4",
   "scene_3/scene_3_1.mp4",
   "scene_5/scene_5_1.mp4",
-  "scene_6/scene_6_1.mp4",
+  "scene_1/scene_1_1.mp4",
   "scene_7/scene_7_1.mp4",
   "scene_8/scene_8_1.mp4",
   "scene_10/scene_10_1.mp4",
   "scene_12/scene_12_1.mp4",
-  "scene_13/scene_13_1.mp4",
+  "scene_2/scene_2_1.mp4",
   "scene_14/scene_14_1.mp4",
   "scene_17/scene_17_1.mp4",
   "scene_18/scene_18_1.mp4",
   "scene_19/scene_19_1.mp4",
   "scene_20/scene_20_1.mp4",
   "scene_21/scene_21_1.mp4",
-  "scene_24/scene_24_1.mp4",
   "scene_1/scene_1_2.mp4",
   "scene_1/scene_1_3.mp4",
   "scene_1/scene_1_4.mp4",
