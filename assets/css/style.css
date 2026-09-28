@@ -142,16 +142,57 @@ h1 {
   font-size: 1.12em;
 }
 
-.submission {
+.authors {
   margin: 28px auto 0;
-  color: var(--muted);
-  font-size: 1.08rem;
-  font-weight: 600;
-  line-height: 1.75;
 }
 
-.submission span {
+.authors sup {
+  font-size: 0.68em;
+  line-height: 0;
+}
+
+.authors__names {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.14rem;
+  font-weight: 650;
+  line-height: 1.7;
+}
+
+.authors__names span {
   display: block;
+}
+
+.authors__affiliation {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.authors__affiliation-logo {
+  display: block;
+  height: 1.3rem;
+  width: auto;
+  margin: 0 auto;
+}
+
+.authors__notes {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.authors__notes span + span {
+  margin-left: 1.1rem;
+}
+
+.authors__venue {
+  margin: 0.9rem 0 0;
+  color: var(--accent);
+  font-size: 1.12rem;
+  font-weight: 800;
 }
 
 .abstract {
@@ -189,6 +230,33 @@ h1 {
 
 .abstract p + p {
   margin-top: 1rem;
+}
+
+.abstract .abstract__title--strong {
+  margin-bottom: 0.7rem;
+  color: var(--text);
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  font-weight: 750;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.abstract + .abstract {
+  margin-top: 0;
+  border-top: 0;
+}
+
+.bibtex {
+  max-width: var(--max);
+  margin: 0.45rem auto 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #eef0f2;
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.6;
 }
 
 .policy-note {
@@ -1253,8 +1321,11 @@ h1 {
     content: " ";
   }
 
-  .submission {
+  .authors {
     margin-top: 22px;
+  }
+
+  .authors__names {
     font-size: 1rem;
   }
 

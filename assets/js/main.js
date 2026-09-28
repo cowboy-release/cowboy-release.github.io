@@ -12,22 +12,31 @@ function setMenuOpen(isOpen) {
 }
 
 if (menuButton && menuPanel) {
+  // On wider screens the menu starts open and only the menu button closes it.
+  // On phone-width screens it would cover the content, so it starts closed and auto-closes.
+  const menuStaysOpen = window.matchMedia("(min-width: 721px)");
+  setMenuOpen(menuStaysOpen.matches);
+
   menuButton.addEventListener("click", () => {
     setMenuOpen(menuPanel.hidden);
   });
 
   menuPanel.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenuOpen(false));
+    link.addEventListener("click", () => {
+      if (!menuStaysOpen.matches) {
+        setMenuOpen(false);
+      }
+    });
   });
 
   document.addEventListener("click", (event) => {
-    if (!menuPanel.hidden && !event.target.closest(".site-menu")) {
+    if (!menuStaysOpen.matches && !menuPanel.hidden && !event.target.closest(".site-menu")) {
       setMenuOpen(false);
     }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
+    if (event.key === "Escape" && !menuStaysOpen.matches) {
       setMenuOpen(false);
     }
   });

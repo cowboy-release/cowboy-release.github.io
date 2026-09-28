@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Anonymous CoRL 2026 submission webpage for COWBOY.">
+  <meta name="description" content="COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation. CoRL 2026.">
   <title>COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -23,6 +23,7 @@
       <a href="#language-conditioning">Language Conditioning</a>
       <a href="#real-world-evaluations">Real World Evaluations</a>
       <a href="#framework-components">Method</a>
+      <a href="#bibtex">BibTeX</a>
     </div>
   </nav>
 
@@ -33,10 +34,15 @@
         <span class="title-line title-line--system">A Scalable Sim-to-Real Framework for Learning</span>
         <span class="title-line title-line--context"><span class="title-accent">Co</span>ntextual <span class="title-accent">W</span>hole-<span class="title-accent">Bo</span>d<span class="title-accent">y</span> Manipulation</span>
       </h1>
-      <p class="submission">
-        <span>Submission to CoRL 2026</span>
-        <span>Paper ID: 715</span>
-      </p>
+      <div class="authors">
+        <p class="authors__names">
+          <span>Jiahui Yang<sup>*</sup>, Jason Jingzhou Liu<sup>*</sup>, Muxin Liu<sup>*</sup>,</span>
+          <span>Andrew E. Wang, Kenneth Shaw, Deepak Pathak<sup>†</sup>, Ruslan Salakhutdinov<sup>†</sup></span>
+        </p>
+        <p class="authors__affiliation"><img class="authors__affiliation-logo" src="assets/images/cmu_wordmark.svg" alt="Carnegie Mellon University"></p>
+        <p class="authors__notes"><span><sup>*</sup>Equal contribution</span><span><sup>†</sup>Equal advising</span></p>
+        <p class="authors__venue">Conference on Robot Learning (CoRL) 2026</p>
+      </div>
     </header>
 
     <section class="abstract" id="abstract" aria-labelledby="abstract-title">
@@ -395,6 +401,23 @@
           <img class="framework-component__figure framework-component__figure--narrow" src="assets/videos/distillation/distillation_figure-1.png" alt="Local-to-full-scenes multi-teacher distillation overview">
         </div>
       </div>
+    </section>
+
+    <section class="abstract" id="acknowledgements" aria-labelledby="acknowledgements-title">
+      <h2 class="abstract__title--strong" id="acknowledgements-title">Acknowledgements</h2>
+      <p>We thank Hengkai Pan, Tony Tao, Peiqi Liu, Ritvik Singh, Arthur Allshire, Tal Daniel, and Dieter Fox for valuable discussions and feedback on this work. We also thank Adam Kan for help setting up the TidyBot++ base. This work was supported in part by XXX.</p>
+    </section>
+
+    <section class="abstract" id="bibtex" aria-labelledby="bibtex-title">
+      <h2 class="abstract__title--strong" id="bibtex-title">BibTeX</h2>
+      <pre class="bibtex"><code>@inproceedings{yang2026cowboy,
+  title     = {COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation},
+  author    = {Yang, Jiahui and Liu, Jason Jingzhou and Liu, Muxin and
+               Wang, Andrew E. and Shaw, Kenneth and
+               Pathak, Deepak and Salakhutdinov, Ruslan},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}</code></pre>
     </section>
   </main>
 
