@@ -1,0 +1,384 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anonymous CoRL 2026 submission webpage for COWBOY.">
+  <title>COWBOY: A Scalable Sim-to-Real Framework for Learning Contextual Whole-Body Manipulation</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="site-menu" aria-label="Page navigation">
+    <button class="site-menu__button" type="button" aria-expanded="false" aria-controls="site-menu-panel" aria-label="Open navigation menu" data-menu-button>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="site-menu__panel" id="site-menu-panel" data-menu-panel hidden>
+      <a href="#abstract">Abstract</a>
+      <a href="#sim-to-real">Generalization</a>
+      <a href="#contextual-whole-body">Contextual Manipulation</a>
+      <a href="#real-world-evaluations">Real World Evaluations</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <h1>
+        <span class="title-word"><span class="title-accent">COWBOY</span></span>
+        <span class="title-line title-line--system">A Scalable Sim-to-Real Framework for Learning</span>
+        <span class="title-line title-line--context"><span class="title-accent">Co</span>ntextual <span class="title-accent">W</span>hole-<span class="title-accent">Bo</span>d<span class="title-accent">y</span> Manipulation</span>
+      </h1>
+      <p class="submission">
+        <span>Submission to CoRL 2026</span>
+        <span>Paper ID: 715</span>
+      </p>
+    </header>
+
+    <section class="abstract" id="abstract" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <p>Mobile manipulators must adapt not only to objects, but also to the spatial context in which they appear: where to position the base, how to manipulate, and where to look while navigating surrounding scene geometry. To address this, we present COWBOY, a scalable sim-to-real framework for learning such contextual whole-body manipulation. On whole-body dexterous grasping, COWBOY transfers zero-shot to hundreds of objects and diverse in-the-wild scenes, spanning cluttered tabletops, shelves, drawers, and other unstructured settings.</p>
+      <p>Rather than learning scene adaptation directly with RL in simulation, a vectorized environment-aware whole-body controller (WBC) handles reaching in thousands of scenes by coordinating base-arm motion, collision avoidance, and active vision. Then, local RL experts are trained in local scenes for object interaction and can be reused across thousands of full-scene layouts. We distill these composed WBC--RL teachers into a single vision policy that controls the mobile base, arm, dexterous hand, and actuated camera from point-cloud observations. The resulting policy exhibits contextual whole-body behavior, automatically adapting base placement, camera viewpoint, arm trajectory, and grasp strategy to observed scene and object geometry.</p>
+    </section>
+
+    <section class="policy-note" aria-label="Policy consistency note">
+      <p class="policy-note__text">All videos below show the <span class="text-accent">same policy</span> in different scenarios (1x Speed)</p>
+    </section>
+
+    <section class="sim-real" id="sim-to-real" aria-labelledby="sim-real-title">
+      <div class="sim-real__inner">
+        <h2 class="sim-real__title" id="sim-real-title">
+          <span class="title-accent">COWBOY</span>
+          <span class="sim-real__title-muted">enables sim-to-real mobile manipulation across</span>
+          <span class="sim-real__title-strong">diverse objects and environments.</span>
+        </h2>
+
+        <div class="sim-real__body">
+          <div class="sim-real__copy">
+            <p class="sim-real__lead">A single vision-based policy coordinates all <span class="text-accent">32 degrees of freedom</span>:</p>
+            <ul class="dof-list">
+              <li><span>Mobile base:</span><strong>3 DOF</strong></li>
+              <li><span>Arm:</span><strong>7 DOF</strong></li>
+              <li><span>Dexterous hand:</span><strong>16 DOF</strong></li>
+              <li><span>Actuated neck for active vision:</span><strong>6 DOF</strong></li>
+            </ul>
+            <p class="sim-real__summary">The policy enables the robot to grasp <span class="text-accent">hundreds of objects</span> across <span class="text-accent">diverse in-the-wild scenes</span>.</p>
+            <a class="sim-real__eval-link" href="#real-world-evaluations">Click to See Full Evaluations</a>
+          </div>
+
+          <div class="showcase-carousel" aria-label="Real-world video carousel">
+            <div class="showcase-grid" data-showcase-grid></div>
+            <div class="showcase-controls">
+              <button class="showcase-button" type="button" data-showcase-step="-1" aria-label="Previous four videos"><span aria-hidden="true">&lt;</span></button>
+              <span class="showcase-status" data-showcase-status></span>
+              <button class="showcase-button" type="button" data-showcase-step="1" aria-label="Next four videos"><span aria-hidden="true">&gt;</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contextual" id="contextual-whole-body" aria-labelledby="contextual-title">
+      <div class="contextual__inner">
+        <h2 class="contextual__title" id="contextual-title"><span class="title-accent">COWBOY</span> policies exhibit <strong>contextual</strong> manipulation.</h2>
+        <div class="contextual__body">
+          <div class="contextual__copy">
+            <p>Observing only the <span class="text-accent">scene geometry</span>, <span class="text-accent">object geometry</span>, and <span class="text-accent">target object</span>, the policy automatically adapts its behavior accordingly:</p>
+            <ul>
+              <li>Selects the appropriate grasp and approach strategy</li>
+              <li>Avoids collisions with the surrounding scene</li>
+              <li>Maintains gaze on the target object through active neck control</li>
+            </ul>
+            <p>All without explicit conditioning on scene type, base pose, camera motion, or grasp strategy.</p>
+          </div>
+          <div class="contextual__visuals" aria-label="Contextual whole-body manipulation comparison videos">
+            <div class="contextual-comparison">
+              <h3 class="contextual-comparison__title">Motion depends on <span class="text-accent">Object Geometry</span></h3>
+              <div class="contextual-video-pair">
+                <video class="contextual-demo-video" muted loop playsinline preload="none" poster="assets/videos/real_world_evals/scene_8/posters/scene_8_1.webp" data-src="assets/videos/real_world_evals/scene_8/scene_8_1.mp4" data-contextual-video aria-label="Scene 8, object 1 grasp video"></video>
+                <video class="contextual-demo-video" muted loop playsinline preload="none" poster="assets/videos/real_world_evals/scene_8/posters/scene_8_2.webp" data-src="assets/videos/real_world_evals/scene_8/scene_8_2.mp4" data-contextual-video aria-label="Scene 8, object 2 grasp video"></video>
+              </div>
+              <p class="contextual-comparison__caption">Same Scene, Different Object → Different Grasps</p>
+            </div>
+            <div class="contextual-comparison">
+              <h3 class="contextual-comparison__title">Motion also depends on <span class="text-accent">Environment Geometry</span></h3>
+              <div class="contextual-video-pair">
+                <video class="contextual-demo-video" muted loop playsinline preload="none" poster="assets/videos/real_world_evals/scene_23/posters/scene_23_1.webp" data-src="assets/videos/real_world_evals/scene_23/scene_23_1.mp4" data-contextual-video aria-label="Scene 23 grasp video"></video>
+                <video class="contextual-demo-video" muted loop playsinline preload="none" poster="assets/videos/real_world_evals/scene_1/posters/scene_1_5.webp" data-src="assets/videos/real_world_evals/scene_1/scene_1_5.mp4" data-contextual-video aria-label="Scene 1, object 5 grasp video"></video>
+              </div>
+              <p class="contextual-comparison__caption">Same Object, Different Scenes → Different Grasps</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="whole-body" id="whole-body-coordination" aria-labelledby="whole-body-title">
+      <div class="whole-body__inner">
+        <h2 class="whole-body__title" id="whole-body-title"><span class="title-accent">COWBOY</span> policies coordinate the <strong>whole body</strong>.</h2>
+        <div class="whole-body__grid">
+          <figure class="whole-body-demo">
+            <h3 class="whole-body-demo__title">Active Vision</h3>
+            <video class="whole-body-demo__video" muted loop playsinline preload="none" poster="assets/videos/others/posters/active_vision.webp" data-src="assets/videos/others/active_vision.mp4" data-contextual-video aria-label="Active Vision demonstration video"></video>
+            <figcaption class="whole-body-demo__caption">Policy controls an actuated neck to maintain gaze on the target object.</figcaption>
+          </figure>
+          <figure class="whole-body-demo">
+            <h3 class="whole-body-demo__title">Base Motion</h3>
+            <video class="whole-body-demo__video" muted loop playsinline preload="none" poster="assets/videos/others/posters/base_movement.webp" data-src="assets/videos/others/base_movement.mp4" data-contextual-video aria-label="Base Motion demonstration video"></video>
+            <figcaption class="whole-body-demo__caption">Policy coordinates base movement if the object is out of reach.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="evals" id="real-world-evaluations" aria-labelledby="real-world-evaluations-title">
+      <div class="evals-header">
+        <h2 id="real-world-evaluations-title">Real World Evaluations.</h2>
+        <div class="evals-header__meta">
+          <p class="evals-subtitle">We evaluate our whole-body grasping policy in <span class="text-accent text-nowrap">24 in-the-wild scenes</span> across <span class="text-accent">over 100 unique objects</span>, achieving a <span class="text-accent">91% success rate</span>.</p>
+          <p class="eval-play-hint" data-play-hint>Hover to play video</p>
+        </div>
+      </div>
+
+      <div class="eval-grid">
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="1"></video>
+            <div class="eval-placeholder">Scene 01</div>
+          </div>
+          <figcaption class="eval-caption">Scene 01</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="2"></video>
+            <div class="eval-placeholder">Scene 02</div>
+          </div>
+          <figcaption class="eval-caption">Scene 02</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="3"></video>
+            <div class="eval-placeholder">Scene 03</div>
+          </div>
+          <figcaption class="eval-caption">Scene 03</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="4"></video>
+            <div class="eval-placeholder">Scene 04</div>
+          </div>
+          <figcaption class="eval-caption">Scene 04</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="5"></video>
+            <div class="eval-placeholder">Scene 05</div>
+          </div>
+          <figcaption class="eval-caption">Scene 05</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="6"></video>
+            <div class="eval-placeholder">Scene 06</div>
+          </div>
+          <figcaption class="eval-caption">Scene 06</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="7"></video>
+            <div class="eval-placeholder">Scene 07</div>
+          </div>
+          <figcaption class="eval-caption">Scene 07</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="8"></video>
+            <div class="eval-placeholder">Scene 08</div>
+          </div>
+          <figcaption class="eval-caption">Scene 08</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="9"></video>
+            <div class="eval-placeholder">Scene 09</div>
+          </div>
+          <figcaption class="eval-caption">Scene 09</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="10"></video>
+            <div class="eval-placeholder">Scene 10</div>
+          </div>
+          <figcaption class="eval-caption">Scene 10</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="11"></video>
+            <div class="eval-placeholder">Scene 11</div>
+          </div>
+          <figcaption class="eval-caption">Scene 11</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="12"></video>
+            <div class="eval-placeholder">Scene 12</div>
+          </div>
+          <figcaption class="eval-caption">Scene 12</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="13"></video>
+            <div class="eval-placeholder">Scene 13</div>
+          </div>
+          <figcaption class="eval-caption">Scene 13</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="14"></video>
+            <div class="eval-placeholder">Scene 14</div>
+          </div>
+          <figcaption class="eval-caption">Scene 14</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="15"></video>
+            <div class="eval-placeholder">Scene 15</div>
+          </div>
+          <figcaption class="eval-caption">Scene 15</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="16"></video>
+            <div class="eval-placeholder">Scene 16</div>
+          </div>
+          <figcaption class="eval-caption">Scene 16</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="17"></video>
+            <div class="eval-placeholder">Scene 17</div>
+          </div>
+          <figcaption class="eval-caption">Scene 17</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="18"></video>
+            <div class="eval-placeholder">Scene 18</div>
+          </div>
+          <figcaption class="eval-caption">Scene 18</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="19"></video>
+            <div class="eval-placeholder">Scene 19</div>
+          </div>
+          <figcaption class="eval-caption">Scene 19</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="20"></video>
+            <div class="eval-placeholder">Scene 20</div>
+          </div>
+          <figcaption class="eval-caption">Scene 20</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="21"></video>
+            <div class="eval-placeholder">Scene 21</div>
+          </div>
+          <figcaption class="eval-caption">Scene 21</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="22"></video>
+            <div class="eval-placeholder">Scene 22</div>
+          </div>
+          <figcaption class="eval-caption">Scene 22</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="23"></video>
+            <div class="eval-placeholder">Scene 23</div>
+          </div>
+          <figcaption class="eval-caption">Scene 23</figcaption>
+        </figure>
+        <figure class="eval-card">
+          <div class="eval-media">
+            <video muted loop playsinline preload="none" data-scene="24"></video>
+            <div class="eval-placeholder">Scene 24</div>
+          </div>
+          <figcaption class="eval-caption">Scene 24</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="framework" id="framework-components" aria-labelledby="framework-title">
+      <div class="framework__inner">
+        <h2 class="framework__title" id="framework-title"><span class="title-accent">COWBOY</span> framework has three components:</h2>
+
+        <div class="framework-component">
+          <h3 class="framework-component__title">1. Vectorized Environment-Aware Whole-Body Controller</h3>
+          <p class="framework-component__description">We introduce a vectorized whole-body controller (WBC) capable of generating environment aware whole-body motion across thousands of simulated environments on a single GPU.</p>
+          <div class="framework-video-grid framework-video-grid--two">
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">End-Effector Reaching</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/eef_reaching.webp" data-src="assets/videos/wbc/eef_reaching.mp4" data-contextual-video aria-label="End-Effector Reaching demonstration video"></video>
+            </figure>
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">Camera Gaze Control</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/camera_gaze_control.webp" data-src="assets/videos/wbc/camera_gaze_control.mp4" data-contextual-video aria-label="Camera Gaze Control demonstration video"></video>
+            </figure>
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">Self Collision Avoidance</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/self_collision_avoidance.webp" data-src="assets/videos/wbc/self_collision_avoidance.mp4" data-contextual-video aria-label="Self Collision Avoidance demonstration video"></video>
+            </figure>
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">Environment Collision Avoidance</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/wbc/posters/env_collision_avoidance.webp" data-src="assets/videos/wbc/env_collision_avoidance.mp4" data-contextual-video aria-label="Environment Collision Avoidance demonstration video"></video>
+            </figure>
+          </div>
+        </div>
+
+        <div class="framework-component">
+          <h3 class="framework-component__title">2. Contact-Rich Local RL Policies</h3>
+          <p class="framework-component__description">Our WBC handles collision-free approach to the target object. This allows us to train local RL policies that only focus on object interactions, simplifying the learning task.</p>
+          <div class="framework-video-grid framework-video-grid--three">
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">Top Down Grasp</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/local/posters/top_down_grasp.webp" data-src="assets/videos/local/top_down_grasp.mp4" data-contextual-video aria-label="Top Down Grasp demonstration video"></video>
+            </figure>
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">Side Grasp</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/local/posters/side_grasp.webp" data-src="assets/videos/local/side_grasp.mp4" data-contextual-video aria-label="Side Grasp demonstration video"></video>
+            </figure>
+            <figure class="framework-video-card">
+              <h4 class="framework-video-card__title">Constrained Side Grasp</h4>
+              <video class="framework-video-card__video" muted loop playsinline preload="none" poster="assets/videos/local/posters/constrained_side_grasp.webp" data-src="assets/videos/local/constrained_side_grasp.mp4" data-contextual-video aria-label="Constrained Side Grasp demonstration video"></video>
+            </figure>
+          </div>
+        </div>
+
+        <div class="framework-component framework-component--pending">
+          <h3 class="framework-component__title">3. Local-to-Full-Scenes Multi-Teacher Distillation</h3>
+          <p class="framework-component__description">We embed the local scenes within diverse full scenes, where the WBC first brings the end effector near the object. The local policy can then complete the task, enabling a policy trained in one local scene to generate expert motion across diverse full-scenes.</p>
+          <img class="framework-component__figure" src="assets/videos/distillation/local_global_scene_figure.jpg" alt="Local scenes embedded within diverse full scenes for multi-teacher distillation">
+          <div class="distillation-carousel" aria-label="Distillation video carousel">
+            <div class="distillation-grid" data-distillation-grid></div>
+            <div class="distillation-controls">
+              <button class="distillation-button" type="button" data-distillation-step="-1" aria-label="Previous distillation video group"><span aria-hidden="true">&lt;</span></button>
+              <span class="distillation-status" data-distillation-status></span>
+              <button class="distillation-button" type="button" data-distillation-step="1" aria-label="Next distillation video group"><span aria-hidden="true">&gt;</span></button>
+            </div>
+          </div>
+          <p class="framework-component__description">We distill both the WBC reaching behavior and the state-based local policies into a unified vision-based whole-body policy, trained across thousands of environments and hundreds of objects. The resulting policy zero-shot transfers to the real world.</p>
+          <img class="framework-component__figure framework-component__figure--narrow" src="assets/videos/distillation/distillation_figure-1.png" alt="Local-to-full-scenes multi-teacher distillation overview">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/video-manifest.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
