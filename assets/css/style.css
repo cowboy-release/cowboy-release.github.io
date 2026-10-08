@@ -163,6 +163,17 @@ h1 {
   display: block;
 }
 
+.authors__names a {
+  text-decoration: underline;
+  text-decoration-color: rgba(216, 95, 40, 0.5);
+  text-underline-offset: 0.2em;
+}
+
+.authors__names a:hover,
+.authors__names a:focus-visible {
+  text-decoration-color: var(--accent);
+}
+
 .authors__affiliation {
   margin: 0.5rem 0 0;
   color: var(--muted);
