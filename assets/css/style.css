@@ -245,6 +245,11 @@ h1 {
   fill: currentColor;
 }
 
+.hero__link-icon--image {
+  border-radius: 2px;
+  object-fit: cover;
+}
+
 @media (max-width: 560px) {
   .hero__links {
     gap: 0.55rem;
