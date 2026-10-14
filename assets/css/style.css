@@ -217,6 +217,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   min-width: 5.5rem;
   padding: 0.7rem 1.4rem;
   border: 1px solid var(--accent);
@@ -234,6 +235,17 @@ h1 {
     color 160ms ease,
     box-shadow 160ms ease,
     transform 160ms ease;
+}
+
+.hero__link-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.hero__link:not([href]) {
+  cursor: pointer;
 }
 
 .hero__link:hover,
